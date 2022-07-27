@@ -209,7 +209,7 @@ class Chat extends Base {
     async getMessageById(messageId) {
         let message = await this.client.pupPage.evaluate(async (chatId, messageId) => {
             const chat = window.Store.Chat.get(chatId);
-            const msg = chat.msgs.models.find(m => m.id.id === messageId);
+            const msg = chat.msgs.getModelsArray().find(m => m.id.id === messageId);
             return window.WWebJS.getMessageModel(msg);
 
         }, this.id._serialized, messageId);
